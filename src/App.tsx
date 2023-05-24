@@ -1,8 +1,23 @@
-import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { usePerfTiming } from './usePerfTiming';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const timing = usePerfTiming()
+
+  console.log(timing)
+
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false)
+    }, Math.random() * 1000)
+  }, [])
+
+  if (loading) return null
+
   return (
     <div className="App">
       <header className="App-header">
